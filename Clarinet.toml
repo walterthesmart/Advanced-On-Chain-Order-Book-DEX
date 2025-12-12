@@ -1,0 +1,47 @@
+[project]
+name = "Advanced On-Chain Order Book DEX"
+description = "A fully decentralized exchange with advanced order book and Clarity 4 features"
+authors = []
+telemetry = true
+cache_dir = "./.cache"
+
+# SIP-010 Token Trait
+[contracts.sip-010-trait]
+path = "contracts/sip-010-trait.clar"
+epoch = "3.0"
+
+# Test Tokens
+[contracts.test-token-a]
+path = "contracts/test-token-a.clar"
+epoch = "3.0"
+
+[contracts.test-token-b]
+path = "contracts/test-token-b.clar"
+epoch = "3.0"
+
+# Core Order Book Contract (Clarity 4 features)
+[contracts.order-book-core]
+path = "contracts/order-book-core.clar"
+epoch = "3.0"
+
+# Advanced Order Types (Clarity 4 features)
+[contracts.advanced-orders]
+path = "contracts/advanced-orders.clar"
+epoch = "3.0"
+
+# Atomic Swap Contract (Clarity 4 features)
+[contracts.atomic-swap]
+path = "contracts/atomic-swap.clar"
+epoch = "3.0"
+
+[repl.analysis]
+passes = ["check_checker"]
+check_checker = { trusted_sender = false, trusted_caller = false, callee_filter = false }
+
+# Check-checker settings:
+# trusted_sender: if true, inputs are trusted after tx_sender has been checked.
+# trusted_caller: if true, inputs are trusted after contract-caller has been checked.
+# callee_filter: if true, untrusted data may be passed into a private function without a
+# warning, if it gets checked inside. This check will also propagate up to the
+# caller.
+# More informations: https://www.hiro.so/blog/new-safety-checks-in-clarinet
