@@ -1,0 +1,135 @@
+unable to read file ~/.clarinet/clarinetrc.toml
+warning: use of potentially unchecked data
+--> contracts\order-book-core.clar:329:19
+      { order-id: order-id }
+                  ^~~~~~~~
+note:: source of untrusted input here
+(define-public (cancel-order (order-id uint))
+                              ^~~~~~~~
+warning: use of potentially unchecked data
+--> contracts\atomic-swap.clar:94:20
+        hash-lock: hash-lock,
+                   ^~~~~~~~~
+note:: source of untrusted input here
+                 (hash-lock (buff 32))
+                  ^~~~~~~~~
+warning: use of potentially unchecked data
+--> contracts\atomic-swap.clar:143:18
+      { swap-id: swap-id }
+                 ^~~~~~~
+note:: source of untrusted input here
+(define-public (claim-swap (swap-id uint) (preimage (buff 32)))
+                            ^~~~~~~
+warning: use of potentially unchecked data
+--> contracts\atomic-swap.clar:180:18
+      { swap-id: swap-id }
+                 ^~~~~~~
+note:: source of untrusted input here
+(define-public (refund-swap (swap-id uint))
+                             ^~~~~~~
+warning: use of potentially unchecked data
+--> contracts\advanced-orders.clar:279:19
+      { order-id: order-id }
+                  ^~~~~~~~
+note:: source of untrusted input here
+(define-public (try-trigger-conditional-order (order-id uint))
+                                               ^~~~~~~~
+warning: use of potentially unchecked data
+--> contracts\advanced-orders.clar:325:19
+      { order-id: order-id }
+                  ^~~~~~~~
+note:: source of untrusted input here
+(define-public (execute-twap-chunk (order-id uint))
+                                    ^~~~~~~~
+warning: use of potentially unchecked data
+--> contracts\advanced-orders.clar:362:21
+        { order-id: order-id }
+                    ^~~~~~~~
+note:: source of untrusted input here
+(define-public (cancel-advanced-order (order-id uint) (is-twap bool))
+                                       ^~~~~~~~
+warning: use of potentially unchecked data
+--> contracts\advanced-orders.clar:373:21
+        { order-id: order-id }
+                    ^~~~~~~~
+note:: source of untrusted input here
+(define-public (cancel-advanced-order (order-id uint) (is-twap bool))
+                                       ^~~~~~~~
+warning: use of potentially unchecked data
+--> contracts\advanced-orders.clar:385:35
+    (var-set current-market-price new-price)
+                                  ^~~~~~~~~
+note:: source of untrusted input here
+(define-public (update-market-price (new-price uint))
+                                     ^~~~~~~~~
+warning: use of potentially unchecked data
+--> contracts\test-token-a.clar:30:38
+    (try! (ft-transfer? test-token-a amount sender recipient))
+                                     ^~~~~~
+note:: source of untrusted input here
+(define-public (transfer (amount uint) (sender principal) (recipient principal) (memo (optional (buff 34))))
+                          ^~~~~~
+warning: use of potentially unchecked data
+--> contracts\test-token-a.clar:30:52
+    (try! (ft-transfer? test-token-a amount sender recipient))
+                                                   ^~~~~~~~~
+note:: source of untrusted input here
+(define-public (transfer (amount uint) (sender principal) (recipient principal) (memo (optional (buff 34))))
+                                                           ^~~~~~~~~
+warning: use of potentially unchecked data
+--> contracts\test-token-a.clar:64:28
+    (ft-mint? test-token-a amount recipient)
+                           ^~~~~~
+note:: source of untrusted input here
+(define-public (mint (amount uint) (recipient principal))
+                      ^~~~~~
+warning: use of potentially unchecked data
+--> contracts\test-token-a.clar:64:35
+    (ft-mint? test-token-a amount recipient)
+                                  ^~~~~~~~~
+note:: source of untrusted input here
+(define-public (mint (amount uint) (recipient principal))
+                                    ^~~~~~~~~
+warning: use of potentially unchecked data
+--> contracts\test-token-b.clar:30:38
+    (try! (ft-transfer? test-token-b amount sender recipient))
+                                     ^~~~~~
+note:: source of untrusted input here
+(define-public (transfer (amount uint) (sender principal) (recipient principal) (memo (optional (buff 34))))
+                          ^~~~~~
+warning: use of potentially unchecked data
+--> contracts\test-token-b.clar:30:52
+    (try! (ft-transfer? test-token-b amount sender recipient))
+                                                   ^~~~~~~~~
+note:: source of untrusted input here
+(define-public (transfer (amount uint) (sender principal) (recipient principal) (memo (optional (buff 34))))
+                                                           ^~~~~~~~~
+warning: use of potentially unchecked data
+--> contracts\test-token-b.clar:64:28
+    (ft-mint? test-token-b amount recipient)
+                           ^~~~~~
+note:: source of untrusted input here
+(define-public (mint (amount uint) (recipient principal))
+                      ^~~~~~
+warning: use of potentially unchecked data
+--> contracts\test-token-b.clar:64:35
+    (ft-mint? test-token-b amount recipient)
+                                  ^~~~~~~~~
+note:: source of untrusted input here
+(define-public (mint (amount uint) (recipient principal))
+                                    ^~~~~~~~~
+! 17 warnings detected
+✔ 6 contracts checked
+
+----------------------------
+Hint: what's next?
+Once you are ready to write TypeScript unit tests for your contract, run the following command:
+
+  $ npm install
+  $ npm test
+    Run all run tests in the ./tests folder.
+
+Find more information on testing with Clarinet here: https://docs.hiro.so/stacks/clarinet-js-sdk
+These hints can be disabled in the ~/.clarinet/clarinetrc.toml file.
+  $ mkdir -p ~/.clarinet; echo "enable_hints = false" >> ~/.clarinet/clarinetrc.toml
+----------------------------

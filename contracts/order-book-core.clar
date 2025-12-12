@@ -217,7 +217,7 @@
                  (amount uint))
   (let (
     (order-id (var-get next-order-id))
-    (timestamp block-height)  ;; Using block height as timestamp proxy
+    (timestamp stacks-block-height)  ;; Using block height as timestamp proxy
     (is-buy (is-eq side side-buy))
   )
     ;; Validations
@@ -335,7 +335,7 @@
       event: "order-cancelled",
       order-id: order-id,
       trader: tx-sender,
-      timestamp: block-height
+      timestamp: stacks-block-height
     })
     
     (ok true)

@@ -8,31 +8,37 @@ cache_dir = "./.cache"
 # SIP-010 Token Trait
 [contracts.sip-010-trait]
 path = "contracts/sip-010-trait.clar"
-epoch = "3.0"
+clarity_version = 4
+epoch = "3.3"
 
 # Test Tokens
 [contracts.test-token-a]
 path = "contracts/test-token-a.clar"
-epoch = "3.0"
+clarity_version = 4
+epoch = "3.3"
 
 [contracts.test-token-b]
 path = "contracts/test-token-b.clar"
-epoch = "3.0"
+clarity_version = 4
+epoch = "3.3"
 
 # Core Order Book Contract (Clarity 4 features)
 [contracts.order-book-core]
 path = "contracts/order-book-core.clar"
-epoch = "3.0"
+clarity_version = 4
+epoch = "3.3"
 
 # Advanced Order Types (Clarity 4 features)
 [contracts.advanced-orders]
 path = "contracts/advanced-orders.clar"
-epoch = "3.0"
+clarity_version = 4
+epoch = "3.3"
 
 # Atomic Swap Contract (Clarity 4 features)
 [contracts.atomic-swap]
 path = "contracts/atomic-swap.clar"
-epoch = "3.0"
+clarity_version = 4
+epoch = "3.3"
 
 [repl.analysis]
 passes = ["check_checker"]
