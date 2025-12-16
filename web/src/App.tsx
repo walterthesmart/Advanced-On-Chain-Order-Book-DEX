@@ -4,6 +4,7 @@ import { ConnectWallet } from './components/ConnectWallet';
 import { OrderBook } from './components/OrderBook';
 import { Swap } from './components/Swap';
 import { TradeHistory } from './components/TradeHistory';
+import { Chart } from './components/Chart';
 import { userSession } from './common/constants';
 import { useAccountBalance } from './hooks/useAccountBalance';
 
@@ -57,6 +58,10 @@ function App() {
           <p style={{ fontSize: '20px', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto' }}>
             The advanced on-chain order book built for the Stacks ecosystem. Experience true DeFi with Bitcoin settlement.
           </p>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px', marginBottom: '20px' }}>
+          <Chart />
         </div>
 
         <div className="glass glass-panel" style={{ padding: '40px', minHeight: '400px' }}>
