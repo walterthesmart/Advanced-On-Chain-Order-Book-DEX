@@ -5,6 +5,7 @@ import { OrderBook } from './components/OrderBook';
 import { Swap } from './components/Swap';
 import { TradeHistory } from './components/TradeHistory';
 import { Chart } from './components/Chart';
+import { UserOrders } from './components/UserOrders';
 import { userSession } from './common/constants';
 import { useAccountBalance } from './hooks/useAccountBalance';
 import { Toaster } from 'react-hot-toast';
@@ -78,6 +79,7 @@ function App() {
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <OrderBook />
+              <UserOrders />
               <TradeHistory />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
