@@ -1,7 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
+import { ConnectWallet } from './components/ConnectWallet';
+import { userSession } from './common/constants';
 
 function App() {
+  const [userData, setUserData] = useState<any>(null);
+
+  useEffect(() => {
+    if (userSession.isUserSignedIn()) {
+      setUserData(userSession.loadUserData());
+    }
+  }, []);
+
+  const handleConnect = () => {
+    // This callback runs after successful auth
+    if (userSession.isUserSignedIn()) {
+      setUserData(userSession.loadUserData());
+    }
+  };
+
   return (
     <div className="app-container">
       <header className="glass glass-panel" style={{ margin: '24px auto', padding: '16px 24px', maxWidth: '1200px' }}>
@@ -11,8 +28,14 @@ function App() {
             <h2 style={{ margin: 0, fontSize: '24px', background: 'linear-gradient(45deg, #fff, var(--primary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>StxDex</h2>
           </div>
           <div>
-            {/* Placeholder for wallet connect */}
-            <button className="btn-primary">Connect Wallet</button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              {userData && (
+                <div style={{ padding: '8px 12px', background: 'var(--glass-surface)', borderRadius: '8px', fontSize: '14px', border: '1px solid var(--glass-border)' }}>
+                  {userData.profile.stxAddress.testnet.slice(0, 4)}...{userData.profile.stxAddress.testnet.slice(-4)}
+                </div>
+              )}
+              <ConnectWallet onConnect={handleConnect} />
+            </div>
           </div>
         </nav>
       </header>
@@ -73,7 +96,9 @@ function App() {
                       <span style={{ fontWeight: 600 }}>USDA</span>
                     </div>
                   </div>
-                  <button className="btn-primary" style={{ width: '100%' }}>Connect to Trade</button>
+                  <button className="btn-primary" style={{ width: '100%' }} disabled={!userData}>
+                    {userData ? 'Swap' : 'Connect Wallet to Trade'}
+                  </button>
                 </div>
               </div>
             </div>
