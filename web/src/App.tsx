@@ -1,35 +1,87 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="app-container">
+      <header className="glass glass-panel" style={{ margin: '24px auto', padding: '16px 24px', maxWidth: '1200px' }}>
+        <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ width: '32px', height: '32px', background: 'var(--primary)', borderRadius: '8px' }}></div>
+            <h2 style={{ margin: 0, fontSize: '24px', background: 'linear-gradient(45deg, #fff, var(--primary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>StxDex</h2>
+          </div>
+          <div>
+            {/* Placeholder for wallet connect */}
+            <button className="btn-primary">Connect Wallet</button>
+          </div>
+        </nav>
+      </header>
+
+      <main className="page-container" style={{ marginTop: '40px', paddingBottom: '80px' }}>
+        <div className="hero-section" style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <h1 style={{ fontSize: '64px', marginBottom: '20px' }}>Trade on Bitcoin.</h1>
+          <p style={{ fontSize: '20px', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto' }}>
+            The advanced on-chain order book built for the Stacks ecosystem. Experience true DeFi with Bitcoin settlement.
+          </p>
+        </div>
+
+        <div className="glass glass-panel" style={{ padding: '40px', minHeight: '400px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '30px' }}>
+            <h3>Market Overview</h3>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <span style={{ padding: '8px 16px', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', fontSize: '14px' }}>BTC/STX</span>
+              <span style={{ padding: '8px 16px', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', fontSize: '14px' }}>STX/USDA</span>
+            </div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px' }}>
+            <div style={{ background: 'rgba(0,0,0,0.2)', padding: '20px', borderRadius: '12px', border: '1px solid var(--glass-border)' }}>
+              <h4 style={{ color: 'var(--text-muted)' }}>Order Book</h4>
+              <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {[...Array(5)].map((_, i) => (
+                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px' }}>
+                    <span style={{ color: '#ff4d4d' }}>{(1.45 + i * 0.01).toFixed(2)}</span>
+                    <span style={{ color: 'var(--text-dim)' }}>{(Math.random() * 1000).toFixed(0)} STX</span>
+                    <span style={{ color: 'var(--text-main)' }}>{(Math.random() * 500).toFixed(0)} USDA</span>
+                  </div>
+                ))}
+                <div style={{ margin: '10px 0', borderTop: '1px solid var(--glass-border)' }}></div>
+                {[...Array(5)].map((_, i) => (
+                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '14px' }}>
+                    <span style={{ color: '#00cc66' }}>{(1.44 - i * 0.01).toFixed(2)}</span>
+                    <span style={{ color: 'var(--text-dim)' }}>{(Math.random() * 1000).toFixed(0)} STX</span>
+                    <span style={{ color: 'var(--text-main)' }}>{(Math.random() * 500).toFixed(0)} USDA</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <div style={{ background: 'rgba(0,0,0,0.2)', padding: '20px', borderRadius: '12px', border: '1px solid var(--glass-border)', flex: 1 }}>
+                <h4 style={{ color: 'var(--text-muted)' }}>Swap</h4>
+                <div style={{ marginTop: '20px' }}>
+                  <div style={{ background: 'rgba(255,255,255,0.05)', padding: '12px', borderRadius: '8px', marginBottom: '10px' }}>
+                    <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '4px' }}>You Pay</div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <input type="text" value="0.0" style={{ background: 'transparent', border: 'none', color: 'white', fontSize: '20px', width: '100%' }} readOnly />
+                      <span style={{ fontWeight: 600 }}>STX</span>
+                    </div>
+                  </div>
+                  <div style={{ background: 'rgba(255,255,255,0.05)', padding: '12px', borderRadius: '8px', marginBottom: '20px' }}>
+                    <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '4px' }}>You Receive</div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <input type="text" value="0.0" style={{ background: 'transparent', border: 'none', color: 'white', fontSize: '20px', width: '100%' }} readOnly />
+                      <span style={{ fontWeight: 600 }}>USDA</span>
+                    </div>
+                  </div>
+                  <button className="btn-primary" style={{ width: '100%' }}>Connect to Trade</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
