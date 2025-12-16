@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import './App.css';
 import { ConnectWallet } from './components/ConnectWallet';
@@ -7,12 +8,15 @@ import { TradeHistory } from './components/TradeHistory';
 import { Chart } from './components/Chart';
 import { UserOrders } from './components/UserOrders';
 import { Footer } from './components/Footer';
+import { FaucetModal } from './components/FaucetModal';
 import { userSession } from './common/constants';
 import { useAccountBalance } from './hooks/useAccountBalance';
 import { Toaster } from 'react-hot-toast';
+import { Droplet } from 'lucide-react';
 
 function App() {
   const [userData, setUserData] = useState<any>(null);
+  const [isFaucetOpen, setIsFaucetOpen] = useState(false);
   const balance = useAccountBalance();
   const stxBalance = (parseInt(balance) / 1000000).toLocaleString(undefined, { maximumFractionDigits: 2 });
 
@@ -31,6 +35,8 @@ function App() {
   return (
     <div className="app-container">
       <Toaster position="bottom-right" />
+      <FaucetModal isOpen={isFaucetOpen} onClose={() => setIsFaucetOpen(false)} />
+
       <header className="glass glass-panel" style={{ margin: '24px auto', padding: '16px 24px', maxWidth: '1200px' }}>
         <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -39,6 +45,10 @@ function App() {
           </div>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <button onClick={() => setIsFaucetOpen(true)} style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text-muted)' }} title="Testnet Faucet">
+                <Droplet size={18} />
+              </button>
+
               {userData && (
                 <div style={{ display: 'flex', gap: '12px' }}>
                   <div style={{ padding: '8px 12px', background: 'var(--glass-surface)', borderRadius: '8px', fontSize: '14px', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', gap: '4px' }}>
