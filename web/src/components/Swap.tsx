@@ -1,6 +1,7 @@
 
 import { ArrowDownUp, Settings, Wallet } from 'lucide-react';
 import { useDEXContract } from '../hooks/useDEXContract';
+import toast from 'react-hot-toast';
 
 interface Props {
     balance: string;
@@ -11,8 +12,25 @@ export const Swap = ({ balance, isLoggedIn }: Props) => {
     const { placeOrder } = useDEXContract();
 
     // Hardcoded for demo
-    const handleSwap = () => {
-        placeOrder(100, 1500000, true);
+    const handleSwap = async () => {
+        try {
+            await placeOrder(100, 1500000, true);
+            toast.success('Swap transaction submitted!', {
+                style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        } catch (e) {
+            toast.error('Swap failed. Please try again.', {
+                style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        }
     };
 
     return (
