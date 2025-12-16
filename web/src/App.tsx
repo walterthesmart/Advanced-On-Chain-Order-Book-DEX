@@ -7,6 +7,7 @@ import { TradeHistory } from './components/TradeHistory';
 import { Chart } from './components/Chart';
 import { userSession } from './common/constants';
 import { useAccountBalance } from './hooks/useAccountBalance';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [userData, setUserData] = useState<any>(null);
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <Toaster position="bottom-right" />
       <header className="glass glass-panel" style={{ margin: '24px auto', padding: '16px 24px', maxWidth: '1200px' }}>
         <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
