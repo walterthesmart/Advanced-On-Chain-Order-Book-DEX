@@ -1,73 +1,51 @@
-# React + TypeScript + Vite
+# Stacks DEX Web Interface
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the official web interface for the Advanced On-Chain Order Book DEX on Stacks.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Premium UI/UX**: Glassmorphism design system with smooth micro-animations.
+- **Real-time Order Book**: Visualize buy and sell orders with depth indicators.
+- **Interactive Charts**: Trading view style charts for market analysis.
+- **Seamless Swapping**: Easy-to-use swap interface with wallet integration.
+- **User Dashboard**: Track active orders and trade history.
+- **Wallet Connection**: Integrated with Stacks wallets (Leather, Xverse) via `@stacks/connect`.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: React + Vite + TypeScript
+- **Styling**: Vanilla CSS with CSS Variables for theming
+- **Blockchain Interaction**: 
+  - `@stacks/connect`: For wallet authentication and transaction signing.
+  - `@stacks/transactions`: For constructing Clarity contract calls.
+  - `@stacks/network`: For communicating with the Stacks blockchain node.
+- **Icons**: Lucide React
+- **Notifications**: React Hot Toast
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1.  **Install Dependencies**:
+    ```bash
+    npm install
+    ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2.  **Run Development Server**:
+    ```bash
+    npm run dev
+    ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+3.  **Build for Production**:
+    ```bash
+    npm run build
+    ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Development
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- The main application logic is in `src/App.tsx`.
+- Components are located in `src/components/`.
+- Blockchain hooks (e.g., `useDEXContract`) are in `src/hooks/`.
+- Global styles and design tokens are in `src/index.css`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Contributing
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Please create a new branch for every feature and follow the established design patterns.
