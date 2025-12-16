@@ -1,0 +1,53 @@
+---
+id: 0
+name: Mainnet deployment
+network: mainnet
+stacks-node: "https://api.hiro.so"
+bitcoin-node: "http://blockstack:blockstacksystem@bitcoin.blockstack.com:8332"
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - contract-publish:
+            contract-name: advanced-orders
+            expected-sender: SP31AT1T96E4CF8C2QZ7FCFC99WJCTV2GTTWB811C
+            cost: 116860
+            path: "contracts\\advanced-orders.clar"
+            anchor-block-only: true
+            clarity-version: 4
+        - contract-publish:
+            contract-name: sip-010-trait
+            expected-sender: SP31AT1T96E4CF8C2QZ7FCFC99WJCTV2GTTWB811C
+            cost: 7900
+            path: "contracts\\sip-010-trait.clar"
+            anchor-block-only: true
+            clarity-version: 4
+        - contract-publish:
+            contract-name: atomic-swap
+            expected-sender: SP31AT1T96E4CF8C2QZ7FCFC99WJCTV2GTTWB811C
+            cost: 70510
+            path: "contracts\\atomic-swap.clar"
+            anchor-block-only: true
+            clarity-version: 4
+        - contract-publish:
+            contract-name: order-book-core
+            expected-sender: SP31AT1T96E4CF8C2QZ7FCFC99WJCTV2GTTWB811C
+            cost: 109640
+            path: "contracts\\order-book-core.clar"
+            anchor-block-only: true
+            clarity-version: 4
+        - contract-publish:
+            contract-name: test-token-a
+            expected-sender: SP31AT1T96E4CF8C2QZ7FCFC99WJCTV2GTTWB811C
+            cost: 18410
+            path: "contracts\\test-token-a.clar"
+            anchor-block-only: true
+            clarity-version: 4
+        - contract-publish:
+            contract-name: test-token-b
+            expected-sender: SP31AT1T96E4CF8C2QZ7FCFC99WJCTV2GTTWB811C
+            cost: 18470
+            path: "contracts\\test-token-b.clar"
+            anchor-block-only: true
+            clarity-version: 4
+      epoch: "3.3"
