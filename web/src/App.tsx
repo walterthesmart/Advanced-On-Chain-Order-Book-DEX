@@ -3,6 +3,7 @@ import './App.css';
 import { ConnectWallet } from './components/ConnectWallet';
 import { OrderBook } from './components/OrderBook';
 import { Swap } from './components/Swap';
+import { TradeHistory } from './components/TradeHistory';
 import { userSession } from './common/constants';
 import { useAccountBalance } from './hooks/useAccountBalance';
 
@@ -68,7 +69,10 @@ function App() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px' }}>
-            <OrderBook />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <OrderBook />
+              <TradeHistory />
+            </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <Swap balance={balance} isLoggedIn={!!userData} />
             </div>
