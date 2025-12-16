@@ -1,5 +1,7 @@
 
 import { ArrowDownUp, Settings, Wallet } from 'lucide-react';
+import { useDEXContract } from '../hooks/useDEXContract';
+import toast from 'react-hot-toast';
 
 interface Props {
     balance: string;
@@ -7,6 +9,30 @@ interface Props {
 }
 
 export const Swap = ({ balance, isLoggedIn }: Props) => {
+    const { placeOrder } = useDEXContract();
+
+    // Hardcoded for demo
+    const handleSwap = async () => {
+        try {
+            await placeOrder(100, 1500000, true);
+            toast.success('Swap transaction submitted!', {
+                style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        } catch (e) {
+            toast.error('Swap failed. Please try again.', {
+                style: {
+                    borderRadius: '10px',
+                    background: '#333',
+                    color: '#fff',
+                },
+            });
+        }
+    };
+
     return (
         <div style={{ background: 'rgba(0,0,0,0.2)', padding: '20px', borderRadius: '12px', border: '1px solid var(--glass-border)', flex: 1 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
@@ -40,7 +66,11 @@ export const Swap = ({ balance, isLoggedIn }: Props) => {
                     </div>
                 </div>
 
-                <button className="btn-primary" style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }} disabled={!isLoggedIn}>
+                <button className="btn-primary"
+                    style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}
+                    disabled={!isLoggedIn}
+                    onClick={handleSwap}
+                >
                     {!isLoggedIn && <Wallet size={18} />}
                     {isLoggedIn ? 'Swap' : 'Connect Wallet to Trade'}
                 </button>

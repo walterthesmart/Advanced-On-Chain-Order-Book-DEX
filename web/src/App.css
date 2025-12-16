@@ -43,3 +43,26 @@
     background: var(--glass-surface);
     border-color: var(--text-dim);
 }
+
+@media (max-width: 768px) {
+    .page-container {
+        padding: 0 16px;
+    }
+
+    .glass-panel {
+        padding: 20px !important;
+    }
+
+    /* Stack grid columns on mobile */
+    div[style*="grid-template-columns: 2fr 1fr"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    h1 {
+        font-size: 42px !important;
+    }
+
+    .hero-section p {
+        font-size: 16px !important;
+    }
+}

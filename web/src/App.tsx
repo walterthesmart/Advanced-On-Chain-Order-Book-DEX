@@ -3,8 +3,12 @@ import './App.css';
 import { ConnectWallet } from './components/ConnectWallet';
 import { OrderBook } from './components/OrderBook';
 import { Swap } from './components/Swap';
+import { TradeHistory } from './components/TradeHistory';
+import { Chart } from './components/Chart';
+import { UserOrders } from './components/UserOrders';
 import { userSession } from './common/constants';
 import { useAccountBalance } from './hooks/useAccountBalance';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [userData, setUserData] = useState<any>(null);
@@ -25,6 +29,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <Toaster position="bottom-right" />
       <header className="glass glass-panel" style={{ margin: '24px auto', padding: '16px 24px', maxWidth: '1200px' }}>
         <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -58,6 +63,10 @@ function App() {
           </p>
         </div>
 
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '20px', marginBottom: '20px' }}>
+          <Chart />
+        </div>
+
         <div className="glass glass-panel" style={{ padding: '40px', minHeight: '400px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '30px' }}>
             <h3>Market Overview</h3>
@@ -68,7 +77,11 @@ function App() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '20px' }}>
-            <OrderBook />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <OrderBook />
+              <UserOrders />
+              <TradeHistory />
+            </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <Swap balance={balance} isLoggedIn={!!userData} />
             </div>
