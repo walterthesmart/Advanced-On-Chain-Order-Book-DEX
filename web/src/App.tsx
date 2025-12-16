@@ -6,6 +6,7 @@ import { Swap } from './components/Swap';
 import { TradeHistory } from './components/TradeHistory';
 import { Chart } from './components/Chart';
 import { UserOrders } from './components/UserOrders';
+import { Footer } from './components/Footer';
 import { userSession } from './common/constants';
 import { useAccountBalance } from './hooks/useAccountBalance';
 import { Toaster } from 'react-hot-toast';
@@ -55,7 +56,7 @@ function App() {
         </nav>
       </header>
 
-      <main className="page-container" style={{ marginTop: '40px', paddingBottom: '80px' }}>
+      <main className="page-container" style={{ marginTop: '40px', paddingBottom: '80px', minHeight: 'calc(100vh - 400px)' }}>
         <div className="hero-section" style={{ textAlign: 'center', marginBottom: '60px' }}>
           <h1 style={{ fontSize: '64px', marginBottom: '20px' }}>Trade on Bitcoin.</h1>
           <p style={{ fontSize: '20px', color: 'var(--text-muted)', maxWidth: '600px', margin: '0 auto' }}>
@@ -88,6 +89,8 @@ function App() {
           </div>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }
