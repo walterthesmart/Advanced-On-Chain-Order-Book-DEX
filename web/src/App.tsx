@@ -2,9 +2,12 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import { ConnectWallet } from './components/ConnectWallet';
 import { userSession } from './common/constants';
+import { useAccountBalance } from './hooks/useAccountBalance';
 
 function App() {
   const [userData, setUserData] = useState<any>(null);
+  const balance = useAccountBalance();
+  const stxBalance = (parseInt(balance) / 1000000).toLocaleString(undefined, { maximumFractionDigits: 2 });
 
   useEffect(() => {
     if (userSession.isUserSignedIn()) {
@@ -13,7 +16,6 @@ function App() {
   }, []);
 
   const handleConnect = () => {
-    // This callback runs after successful auth
     if (userSession.isUserSignedIn()) {
       setUserData(userSession.loadUserData());
     }
@@ -30,8 +32,14 @@ function App() {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               {userData && (
-                <div style={{ padding: '8px 12px', background: 'var(--glass-surface)', borderRadius: '8px', fontSize: '14px', border: '1px solid var(--glass-border)' }}>
-                  {userData.profile.stxAddress.testnet.slice(0, 4)}...{userData.profile.stxAddress.testnet.slice(-4)}
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  <div style={{ padding: '8px 12px', background: 'var(--glass-surface)', borderRadius: '8px', fontSize: '14px', border: '1px solid var(--glass-border)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <span style={{ color: 'var(--accent)' }}>{stxBalance}</span>
+                    <span style={{ color: 'var(--text-muted)' }}>STX</span>
+                  </div>
+                  <div style={{ padding: '8px 12px', background: 'var(--glass-surface)', borderRadius: '8px', fontSize: '14px', border: '1px solid var(--glass-border)' }}>
+                    {userData.profile.stxAddress.testnet.slice(0, 4)}...{userData.profile.stxAddress.testnet.slice(-4)}
+                  </div>
                 </div>
               )}
               <ConnectWallet onConnect={handleConnect} />
@@ -85,7 +93,7 @@ function App() {
                   <div style={{ background: 'rgba(255,255,255,0.05)', padding: '12px', borderRadius: '8px', marginBottom: '10px' }}>
                     <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '4px' }}>You Pay</div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <input type="text" value="0.0" style={{ background: 'transparent', border: 'none', color: 'white', fontSize: '20px', width: '100%' }} readOnly />
+                      <input type="text" value={balance === '0' ? '0.0' : (parseInt(balance) / 1000000).toFixed(2)} style={{ background: 'transparent', border: 'none', color: 'white', fontSize: '20px', width: '100%' }} readOnly />
                       <span style={{ fontWeight: 600 }}>STX</span>
                     </div>
                   </div>
