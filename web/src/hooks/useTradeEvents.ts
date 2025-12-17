@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { chainhooksClient } from '../services/chainhooks.client';
-import { TradeExecutedEvent, EventSubscriptionOptions } from '../types/chainhook-events';
+import type { TradeExecutedEvent, EventSubscriptionOptions } from '../types/chainhook-events';
 
 /**
  * React hook for subscribing to trade execution events via chainhooks

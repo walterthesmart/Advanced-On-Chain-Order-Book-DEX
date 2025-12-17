@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { chainhooksClient } from '../services/chainhooks.client';
-import {
+import type {
     SwapInitiatedEvent,
     SwapCompletedEvent,
     EventSubscriptionOptions
