@@ -1,11 +1,10 @@
-import { ArrowUp, ArrowDown } from 'lucide-react';
 import { useOrderBookEvents } from '../hooks/useOrderBookEvents';
 import { useMemo } from 'react';
 import toast from 'react-hot-toast';
 
 export const OrderBook = () => {
     // Subscribe to real-time order book events from blockchain
-    const { orders, matches, isConnected, error } = useOrderBookEvents({
+    const { orders, isConnected } = useOrderBookEvents({
         onConnect: () => toast.success('📡 Connected to order book feed'),
         onError: (err) => toast.error(`Failed to connect: ${err.message}`),
         onDisconnect: () => toast('Disconnected from order book feed'),
